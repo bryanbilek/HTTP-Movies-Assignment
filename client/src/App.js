@@ -33,20 +33,20 @@ const App = () => {
         <MovieList movies={movieList} />
       </Route>
 
-      {/* <Route path="/movies/:id" render={props => (
-        <Movie {...props} addToSavedList={addToSavedList} getMovieList={getMovieList} />)}/> */}
+      <Route path="/movies/:id" render={props => (
+        <Movie {...props} addToSavedList={addToSavedList} getMovieList={getMovieList} />)}/>
 
-<Route path="/movies/:id">
+{/* <Route path="/movies/:id">
   <Movie addToSavedList={addToSavedList} getMovieList={getMovieList} />
 </Route>
 
 <Route path="/update-movie/:id">
   <UpdateMovie addToSavedList={addToSavedList} getMovieList={getMovieList} movies={movieList}/>
-</Route>
+</Route> */}
       
 
-      {/* <Route exact path="/update-movie/:id" redner={props => (
-         <UpdateMovie {...props} addToSavedList={addToSavedList} getMovieList={getMovieList} movies={movieList} />)}/> */}
+      <Route exact path="/update-movie/:id" render={props => (
+         <UpdateMovie {...props} addToSavedList={addToSavedList} getMovieList={getMovieList} movies={movieList} />)}/>
     </>
   );
 };

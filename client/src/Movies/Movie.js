@@ -6,7 +6,7 @@ import MovieCard from './MovieCard';
 function Movie(props) {
   const [movie, setMovie] = useState(null);
   const match = useRouteMatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   const fetchMovie = id => {
     axios
@@ -21,7 +21,7 @@ function Movie(props) {
 
   const handleUpdate = e => {
     e.preventDefault();
-    history.push(`/update-movie/${movie.id}`);
+    props.history.push(`/update-movie/${movie.id}`);
   };
 
   const handleDelete = e => {
@@ -29,7 +29,7 @@ function Movie(props) {
     axios.delete(`http://localhost:5000/api/movies/${movie.id}`)
       .then(res => {
         console.log(res)
-        props.getMovieList()
+        props.getMovieList();
         props.history.push("/");
       })
       .catch(err => console.log(err));
@@ -50,8 +50,8 @@ function Movie(props) {
       <div className='save-button' onClick={saveMovie}>
         Save
       </div>
-      <button className="" onClick={handleUpdate}>Update</button>
-      <button className="" onClick={handleDelete}>Delete</button>
+      <div className="update-button" onClick={handleUpdate}>Update</div>
+      <div className="delete-button" onClick={handleDelete}>Delete</div>
     </div>
   );
 }

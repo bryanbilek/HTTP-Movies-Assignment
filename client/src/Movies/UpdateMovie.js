@@ -13,7 +13,8 @@ export default function UpdateMovie(props) {
   });
 
   const { register, handleSubmit, reset } = useForm();
-  const history = useHistory();
+  // let id = props.match.params.id;
+  // const history = useHistory();
   const {id} = useParams();
 
   const handleChanges = e => {
@@ -27,7 +28,8 @@ export default function UpdateMovie(props) {
       .then(res => {
         console.log('put request', res)
         props.getMovieList(res.data)
-        props.history.push('/')
+        // props.addToSavedList(res.data);
+        props.history.push('/');
         reset();
       })
       .catch(err => console.log('put error', err))

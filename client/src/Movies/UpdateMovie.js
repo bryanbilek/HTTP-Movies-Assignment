@@ -5,21 +5,26 @@ import axios from 'axios';
 
 export default function UpdateMovie(props) {
   const [update, setUpdate] = useState({
-    id: Date.now(),
     title: '',
     director: '',
     metascore: 0,
-    stars: ''
+    stars: []
   });
 
   const { register, handleSubmit, reset } = useForm();
   // let id = props.match.params.id;
-  // const history = useHistory();
+  const history = useHistory();
+  console.log('history', history);
   const {id} = useParams();
 
   const handleChanges = e => {
     e.persist();
     setUpdate({ ...update, [e.target.name]: e.target.value });
+  };
+
+  const handleChanges2 = e => {
+    e.persist();
+    setUpdate({ ...update, [e.target.name]: e.target.value.split(",") });
   };
 
   const onSubmit = e => {
@@ -29,7 +34,7 @@ export default function UpdateMovie(props) {
         console.log('put request', res)
         props.getMovieList(res.data)
         // props.addToSavedList(res.data);
-        props.history.push('/');
+        history.push('/');
         reset();
       })
       .catch(err => console.log('put error', err))
@@ -57,7 +62,7 @@ export default function UpdateMovie(props) {
         <input type="text" placeholder="title" name="title" ref={register} onChange={handleChanges} />
         <input type="text" placeholder="director" name="director" ref={register} onChange={handleChanges} />
         <input type="text" placeholder="metascore" name="metascore" ref={register} onChange={handleChanges} />
-        <input type="text" placeholder="stars" name="stars" ref={register} onChange={handleChanges} />
+        <input type="text" placeholder="stars" name="stars" ref={register} onChange={handleChanges2} />
 
         <input type="submit" />
       </form>
